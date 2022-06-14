@@ -4,19 +4,22 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
+
 #pragma once
 
-#include "TWBase.h"
-#include "TWData.h"
-#include "TWBitcoinScript.h"
+#include "../Bitcoin/SigningInput.h"
+#include "ContractInput.h"
 
-TW_EXTERN_C_BEGIN
+namespace TW::Hydra{
 
-TW_EXPORT_CLASS
-struct TWHydraTokenScript;
+class SigningInput{
+public:
+    TW::Bitcoin::SigningInput input;
 
-TW_EXPORT_STATIC_METHOD
-struct TWBitcoinScript *_Nonnull TWHydraTokenScriptBuildTokenScript(TWData *_Nonnull input);
+    ContractInput contract;
 
+    SigningInput() = default;
+    SigningInput(const Proto::SigningInput& input);
+};
 
-TW_EXTERN_C_END
+}
