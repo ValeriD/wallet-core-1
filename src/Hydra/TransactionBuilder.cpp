@@ -144,7 +144,6 @@ Bitcoin::TransactionPlan TransactionBuilder::plan(const TW::Hydra::SigningInput&
                 }
 
                 plan.fee += plan.amount;
-                
 
                 plan.amount = input.amount;
 
@@ -153,7 +152,8 @@ Bitcoin::TransactionPlan TransactionBuilder::plan(const TW::Hydra::SigningInput&
                     plan.amount = 0;
 
                 }
-                if(plan.fee > plan.availableAmount){
+                
+                if(plan.fee + plan.amount > plan.availableAmount){
                     plan.error = Common::Proto::Error_low_balance;
                     plan.amount = 0;
                 }
